@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>
+    MASK-ImageSlideShow
+</title>
+<meta charset="utf-8" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="style2.css"/> 
+</head>
+<body onload="start()">
+    <script type="text/javascript">
+     var presentSlide;
+     var image=new Array(5);
+     image[0]="https://th.bing.com/th/id/OIP.QIafY9UsDJkWlzcbJgCreAHaEo?w=303&h=189&c=7&o=5&dpr=1.56&pid=1.7";
+     image[1]="https://th.bing.com/th/id/OIP.fAqNgwVGAE27bXMS8JPOJQHaEo?w=290&h=181&c=7&o=5&dpr=1.56&pid=1.7";
+     image[2]="https://th.bing.com/th/id/OIP.PBTX6v18k3qmWr0u4QOduQHaEK?w=310&h=180&c=7&o=5&dpr=1.56&pid=1.7";
+     image[3]="https://th.bing.com/th/id/OIP.1TQuwXOEwDvfWPA3_lsDpgHaEK?w=279&h=180&c=7&o=5&dpr=1.56&pid=1.7";
+     image[4]="https://th.bing.com/th/id/OIP.Q36NC-tIWgKXhb9LpdqokAHaEo?w=264&h=180&c=7&o=5&dpr=1.56&pid=1.7";
+     image[5]="https://th.bing.com/th/id/OIP.s0h4gM7KfVOOmrimUyptywHaEK?w=332&h=187&c=7&o=5&dpr=1.56&pid=1.7";
+     function start(){
+         presentSlide=1;
+         showSlide(presentSlide);
+     }
+     function prev(){
+         if(presentSlide>1){
+             presentSlide -=1;
+             showSlide(presentSlide);
+         }
+         else{
+             presentSlide=image.length;
+             showSlide(presentSlide);
+         }
+     }
+     function next(){
+        if(presentSlide<image.length){
+             presentSlide +=1;           
+             showSlide(presentSlide);
+         }
+         else{
+             presentSlide=1;
+             showSlide(presentSlide);
+         }
+     }
+     function currentSlide(index){
+         presentSlide=index;
+         showSlide(index);
+     }
+     
+     var dots=document.getElementsByClassName("dots");
+     function showSlide(index){
+        var element2=document.getElementById("image");
+        if (element2.classList.contains("showEffect")) {
+            element2.classList.remove("showEffect");
+            element2.offsetWidth=element2.offsetWidth;
+            element2.classList.add("showEffect");
+        }
+      
+        document.getElementById("image").getElementsByTagName("img")[0].src=image[index-1];
+        document.getElementById("number").innerHTML=index;
+        document.getElementById("textCaption").innerHTML="ImageCaption"+index;
+        document.getElementById("textArtist").innerHTML="Artist"+index;
+
+        for(var i=0;i<5;i++){
+            dots[i].style.backgroundColor="#bbb";
+        }
+        dots[(index%5)].style.backgroundColor="blue";  
+
+     }
+    </script>
+    <div class="background">
+    <div class="headingdiv">
+        <div class="heading" >SlideShow</div>
+    </div>
+    <div class="slideShowContainer">
+        <div id="number"></div>
+        <div id="image" class="showEffect"><img src="" width="100%" height="100%"></div>
+        <div id="textArtist"></div>
+        <div id="textCaption"></div>
+        
+        
+        <a id="prevButton" onclick="prev()" >&#10094</a>
+        <a id="nextButton" onclick="next()">&#10095</a>
+     </div>
+      <div style="text-align:center ;">
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+    </div>  
+    
+    </div>
+    
+</div>
+
+   
+   
+
+
+
+
+</body>
+</html>
